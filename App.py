@@ -106,11 +106,8 @@ if uploaded_file is not None:
         #MOST COMMON WORDS USED
         most_common_df = helper.most_common_words(selected_user, df)
         st.title('Most Common Words')
-        ax.barh(most_common_df[0], most_common_df[1])
-        plt.xticks(rotation = 'vertical')
-        st.title('Most common Words')
-        st.pyplot(fig)
-
+        st. dataframe(most_common_df)
+       
 
 
 

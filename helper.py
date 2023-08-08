@@ -40,16 +40,6 @@ def create_wordcloud(selected_user,df):
 
     if selected_user != "Overall":
         df = df[df['user'] == selected_user]
-        f = open('stop_hinglish.txt', 'r')
-        stop_words = f.read()
-
-        if selected_user != "Overall":
-            df = df[df['user'] == selected_user]
-        temp = df[df['user'] != ']Gd students👨🏻‍💻👨🏻‍🎓💖']
-        temp = temp[temp['message'] != 'image omitted']
-        words = []
-
-
 
 
         temp = df[df['user'] != ']Gd students👨🏻‍💻👨🏻‍🎓💖']
