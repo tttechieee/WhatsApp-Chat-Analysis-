@@ -40,6 +40,16 @@ def create_wordcloud(selected_user,df):
 
     if selected_user != "Overall":
         df = df[df['user'] == selected_user]
+        f = open('stop_hinglish.txt', 'r')
+        stop_words = f.read()
+
+        if selected_user != "Overall":
+            df = df[df['user'] == selected_user]
+        temp = df[df['user'] != ']Gd students👨🏻‍💻👨🏻‍🎓💖']
+        temp = temp[temp['message'] != 'image omitted']
+        words = []
+
+
 
 
         temp = df[df['user'] != ']Gd students👨🏻‍💻👨🏻‍🎓💖']
@@ -60,18 +70,21 @@ def create_wordcloud(selected_user,df):
 def most_common_words(selected_user, df):
     f = open('stop_hinglish.txt', 'r')
     stop_words = f.read()
+
+
     if selected_user != "Overall":
         df = df[df['user'] == selected_user]
-        temp = df[df['user'] != 'Gd students👨🏻‍💻👨🏻‍🎓💖']
-        temp=temp[temp['message'] != 'image omitted']
-        words = []
-        for message in temp['message']:
-            for word in message.lower().split():
-                if word not in stop_words:
-                    words.append(word)
+    temp = df[df['user'] != ']Gd students👨🏻‍💻👨🏻‍🎓💖']
+    temp = temp[temp['message'] != 'image omitted']
+    words =[]
+    for message in temp['message']:
+        for word in message.lower().split():
+            if word not in stop_words:
+                words.append(word)
+    most_common_df= pd.DataFrame(Counter(words).most_common(20))
+    return most_common_df
 
-        most_common_df = pd.DataFrame(Counter(words).most_common(20))
-        return most_common_df
+
 
 
 def monthly_timeline(selected_user, df):
